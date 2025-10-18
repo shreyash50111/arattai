@@ -116,13 +116,7 @@ def index():
       <div><p>There are several compelling reasons to replace WhatsApp with Arattai, particularly for users in India who prioritize data privacy, local data storage, and performance on low-bandwidth networks. Arattai is owned by the Indian tech company Zoho, with all Indian user data stored on servers within India. It is designed to be lightweight, ensuring smooth operation even on older devices and slower 2G or 3G networks, making it a highly accessible choice for a wider range of users. Additionally, Arattai offers unique productivity features like "Pocket" for personal storage and a dedicated "Meetings" tab for scheduling video calls, which is a key differentiator from WhatsApp.</p></div>
     </div>
   </section>
-  
-  <section class="section" id="showcase">
-    <div class="card">
-      <h2 style="color:#1a73e8">What Next</h2>
-      <div><p>Install the arattai app available in play store and app store.After installing we will send you an group invitation from this number"+91 8971244533".</p></div>
-    </div>
-  </section>
+
 
   <section class="section" id="register">
     <div class="card form-card">
@@ -134,6 +128,12 @@ def index():
         <button type="submit">Submit</button>
         <p id="status"></p>
       </form>
+    </div>
+  </section>
+   <section class="section" id="showcase">
+    <div class="card">
+      <h2 style="color:#1a73e8">What Next</h2>
+      <div><p>Install the arattai app available in play store and app store.After installing we will send you an group invitation from this number"+91 8971244533".</p></div>
     </div>
   </section>
 
@@ -265,3 +265,4 @@ if __name__ == "__main__":
     print("Running on http://127.0.0.1:5000")
 
     app.run(debug=True)
+
