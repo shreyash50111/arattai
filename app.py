@@ -84,7 +84,7 @@ def index():
 <body>
 <header id="hero">
   <h1>Switch to Arattai for Our New Class Group 💬</h1>
-  <p>Join the Arattai class group — fill your details below.</p>
+  <p>Join the Arattai class group now.</p>
   <button class="cta-btn" onclick="document.getElementById('register').scrollIntoView({{behavior:'smooth'}})">Join Now</button>
 </header>
 
@@ -236,3 +236,4 @@ def submit():
 if __name__ == "__main__":
     print("Running on http://127.0.0.1:5000")
     app.run(debug=True)
+
