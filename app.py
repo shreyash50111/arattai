@@ -148,7 +148,7 @@ def index():
         </div>
 
         <div class="contact-item">
-          <strong>Phone:</strong> <a href="tel:+918971244533">+91 8971244533</a>
+         <p> <strong>Phone:</strong></p> <a href="tel:+918971244533">+91 8971244533</a>
         </div>
 
         <div class="contact-item">
@@ -265,4 +265,5 @@ if __name__ == "__main__":
     print("Running on http://127.0.0.1:5000")
 
     app.run(debug=True)
+
 
