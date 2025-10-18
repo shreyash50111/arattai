@@ -117,23 +117,13 @@ def index():
     </div>
   </section>
 
-
   <section class="section" id="register">
     <div class="card form-card">
       <h2>Join Arattai Group</h2>
-      <form id="arattaiForm">
-        <input id="name" type="text" placeholder="Full Name" required>
-        <input id="roll" type="text" placeholder="Roll number" required>
-        <input id="phones" type="text" placeholder="Phone number(s), comma-separated" required>
-        <button type="submit">Submit</button>
-        <p id="status"></p>
-      </form>
-    </div>
-  </section>
-   <section class="section" id="showcase">
-    <div class="card">
-      <h2 style="color:#1a73e8">What Next</h2>
-      <div><p>Install the arattai app available in play store and app store.After installing we will send you an group invitation from this number"+91 8971244533".</p></div>
+      <p style="margin-bottom:20px;text-align:center;color:#5f6368">Click the button below to join our class group on Arattai</p>
+      <a href="https://chat.arattai.in/groups/q43545f313237383738333231343031333734343739375f32303032313337383634322d47437c3031303131353032353136343137363037383337333436353730" target="_blank" style="display:block;text-decoration:none">
+        <button type="button" style="width:100%;background:#1a73e8;color:#fff;border:none;padding:12px;border-radius:8px;font-size:1rem;cursor:pointer">Join Group</button>
+      </a>
     </div>
   </section>
 
@@ -148,7 +138,7 @@ def index():
         </div>
 
         <div class="contact-item">
-         <p> <strong>Phone:</strong></p> <a href="tel:+918971244533">+91 8971244533</a>
+          <strong>Phone:</strong> <a href="tel:+919980666673">+91 9980666673</a>
         </div>
 
         <div class="contact-item">
@@ -176,7 +166,7 @@ const slides=1;
 
 if(slider && dotsContainer){{
   let current=0;
-
+  
   for(let i=0;i<slides;i++){{
     const dot=document.createElement('span');
     dot.className='dot'+(i===0?' active':'');
@@ -263,7 +253,7 @@ def submit():
 
 if __name__ == "__main__":
     print("Running on http://127.0.0.1:5000")
-
     app.run(debug=True)
+
 
 
