@@ -124,12 +124,12 @@ def index():
       <a href="https://chat.arattai.in/groups/q43545f313237383738333231343031333734343739375f32303032313337383634322d47437c3031303131353032353136343137363037383337333436353730" target="_blank" style="display:block;text-decoration:none">
         <button type="button" style="width:100%;background:#1a73e8;color:#fff;border:none;padding:12px;border-radius:8px;font-size:1rem;cursor:pointer;margin-bottom:20px">Join Group</button>
       </a>
-      
+
       <div style="text-align:center;margin:20px 0;color:#5f6368;position:relative">
         <span style="background:#fff;padding:0 10px;position:relative;z-index:1">OR</span>
         <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:#dadce0;z-index:0"></div>
       </div>
-      
+
       <p style="margin-bottom:15px;text-align:center;color:#5f6368;font-size:0.95rem">If the link doesn't work, fill the form below:</p>
       <form id="arattaiForm">
         <input id="name" type="text" placeholder="Full Name" required>
@@ -137,6 +137,7 @@ def index():
         <input id="phones" type="text" placeholder="Phone number(s), comma-separated" required>
         <button type="submit">Submit</button>
         <p id="status"></p>
+        <p>If you have chosen to fill the form, please install the Arattai app and wait for a group invitation from +91 8971244533. This process may take up to a week or longer.</p>
       </form>
     </div>
   </section>
@@ -180,7 +181,7 @@ const slides=1;
 
 if(slider && dotsContainer){{
   let current=0;
-  
+
   for(let i=0;i<slides;i++){{
     const dot=document.createElement('span');
     dot.className='dot'+(i===0?' active':'');
@@ -202,33 +203,25 @@ if(slider && dotsContainer){{
 }}
 
 // Form submission
-const form = document.getElementById('arattaiForm');
-if(form){
-  form.addEventListener('submit',async(e)=>{
-   e.preventDefault();
-   const name=document.getElementById('name').value.trim();
-   const roll=document.getElementById('roll').value.trim();
-   const phone=document.getElementById('phones').value.trim();
-   const status=document.getElementById('status');
-   status.textContent='Submitting...';
-   status.style.color='#5f6368';
-   try{
-     const res=await fetch('/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,roll,phone})});
-     const r=await res.json();
-     status.textContent=r.message;
-     status.style.color=r.success?'green':'red';
-     if(r.success){
-       document.getElementById('name').value='';
-       document.getElementById('roll').value='';
-       document.getElementById('phones').value='';
-     }
-   }catch(err){
-     status.textContent='Error submitting form';
-     status.style.color='red';
-     console.error(err);
-   }
-  });
-}}
+document.getElementById('arattaiForm').addEventListener('submit',async(e)=>{{
+ e.preventDefault();
+ const name=document.getElementById('name').value.trim();
+ const roll=document.getElementById('roll').value.trim();
+ const phone=document.getElementById('phones').value.trim();
+ const status=document.getElementById('status');
+ status.textContent='Submitting...';
+ status.style.color='#5f6368';
+ try{{
+   const res=await fetch('/submit',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{name,roll,phone}})}});
+   const r=await res.json();
+   status.textContent=r.message;
+   status.style.color=r.success?'green':'red';
+ }}catch(err){{
+   status.textContent='Error submitting form';
+   status.style.color='red';
+   console.error(err);
+ }}
+}});
 </script>
 </body>
 </html>"""
@@ -276,6 +269,7 @@ def submit():
 if __name__ == "__main__":
     print("Running on http://127.0.0.1:5000")
     app.run(debug=True)
+
 
 
 
