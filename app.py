@@ -39,7 +39,7 @@ def index():
   /* Laptop Animation Styles */
   .laptop-container{{max-width:1100px;margin:60px auto;padding:20px;perspective:1400px;opacity:0;transform:translateY(60px);transition:all 1.2s ease}}
   .laptop-container.show{{opacity:1;transform:none}}
-  .laptop{{position:relative;width:100%;max-width:900px;margin:0 auto;transform-style:preserve-3d;animation:float 3s ease-in-out infinite}}
+  .laptop{{position:relative;width:100%;max-width:900px;margin:0 auto;transform-style:preserve-3d;animation:float 2s ease-in-out infinite}}
   @keyframes float{{0%,100%{{transform:translateY(0) rotateX(0deg)}}50%{{transform:translateY(-20px) rotateX(2deg)}}}}
   .laptop-screen{{position:relative;background:linear-gradient(135deg,#202124,#3c4043);border-radius:12px 12px 0 0;padding:8px 8px 0;box-shadow:0 20px 60px rgba(0,0,0,.3)}}
   .screen-content{{background:#fff;border-radius:6px;overflow:hidden;position:relative;padding-bottom:62.5%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}}
@@ -84,7 +84,7 @@ def index():
 <body>
 <header id="hero">
   <h1>Switch to Arattai for Our New Class Group 💬</h1>
-  <p>Join the Arattai class group now.</p>
+  <p>Join the Arattai class group — fill your details below.</p>
   <button class="cta-btn" onclick="document.getElementById('register').scrollIntoView({{behavior:'smooth'}})">Join Now</button>
 </header>
 
@@ -236,4 +236,5 @@ def submit():
 if __name__ == "__main__":
     print("Running on http://127.0.0.1:5000")
     app.run(debug=True)
+
 
