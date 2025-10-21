@@ -39,7 +39,7 @@ def index():
   /* Laptop Animation Styles */
   .laptop-container{{max-width:1100px;margin:60px auto;padding:20px;perspective:1400px;opacity:0;transform:translateY(60px);transition:all 1.2s ease}}
   .laptop-container.show{{opacity:1;transform:none}}
-  .laptop{{position:relative;width:100%;max-width:900px;margin:0 auto;transform-style:preserve-3d;animation:float 2s ease-in-out infinite}}
+  .laptop{{position:relative;width:100%;max-width:900px;margin:0 auto;transform-style:preserve-3d;animation:float 2.5s ease-in-out infinite}}
   @keyframes float{{0%,100%{{transform:translateY(0) rotateX(0deg)}}50%{{transform:translateY(-20px) rotateX(2deg)}}}}
   .laptop-screen{{position:relative;background:linear-gradient(135deg,#202124,#3c4043);border-radius:12px 12px 0 0;padding:8px 8px 0;box-shadow:0 20px 60px rgba(0,0,0,.3)}}
   .screen-content{{background:#fff;border-radius:6px;overflow:hidden;position:relative;padding-bottom:62.5%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}}
@@ -84,7 +84,7 @@ def index():
 <body>
 <header id="hero">
   <h1>Switch to Arattai for Our New Class Group 💬</h1>
-  <p>Join the Arattai class group — fill your details below.</p>
+  <p>Join the Arattai class group now.</p>
   <button class="cta-btn" onclick="document.getElementById('register').scrollIntoView({{behavior:'smooth'}})">Join Now</button>
 </header>
 
@@ -122,8 +122,22 @@ def index():
       <h2>Join Arattai Group</h2>
       <p style="margin-bottom:20px;text-align:center;color:#5f6368">Click the button below to join our class group on Arattai</p>
       <a href="https://chat.arattai.in/groups/q43545f313237383738333231343031333734343739375f32303032313337383634322d47437c3031303131353032353136343137363037383337333436353730" target="_blank" style="display:block;text-decoration:none">
-        <button type="button" style="width:100%;background:#1a73e8;color:#fff;border:none;padding:12px;border-radius:8px;font-size:1rem;cursor:pointer">Join Group</button>
+        <button type="button" style="width:100%;background:#1a73e8;color:#fff;border:none;padding:12px;border-radius:8px;font-size:1rem;cursor:pointer;margin-bottom:20px">Join Group</button>
       </a>
+      
+      <div style="text-align:center;margin:20px 0;color:#5f6368;position:relative">
+        <span style="background:#fff;padding:0 10px;position:relative;z-index:1">OR</span>
+        <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:#dadce0;z-index:0"></div>
+      </div>
+      
+      <p style="margin-bottom:15px;text-align:center;color:#5f6368;font-size:0.95rem">If the link doesn't work, fill the form below:</p>
+      <form id="arattaiForm">
+        <input id="name" type="text" placeholder="Full Name" required>
+        <input id="roll" type="text" placeholder="Roll number" required>
+        <input id="phones" type="text" placeholder="Phone number(s), comma-separated" required>
+        <button type="submit">Submit</button>
+        <p id="status"></p>
+      </form>
     </div>
   </section>
 
@@ -188,7 +202,33 @@ if(slider && dotsContainer){{
 }}
 
 // Form submission
-// Removed - now using direct invitation link
+const form = document.getElementById('arattaiForm');
+if(form){
+  form.addEventListener('submit',async(e)=>{
+   e.preventDefault();
+   const name=document.getElementById('name').value.trim();
+   const roll=document.getElementById('roll').value.trim();
+   const phone=document.getElementById('phones').value.trim();
+   const status=document.getElementById('status');
+   status.textContent='Submitting...';
+   status.style.color='#5f6368';
+   try{
+     const res=await fetch('/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,roll,phone})});
+     const r=await res.json();
+     status.textContent=r.message;
+     status.style.color=r.success?'green':'red';
+     if(r.success){
+       document.getElementById('name').value='';
+       document.getElementById('roll').value='';
+       document.getElementById('phones').value='';
+     }
+   }catch(err){
+     status.textContent='Error submitting form';
+     status.style.color='red';
+     console.error(err);
+   }
+  });
+}}
 </script>
 </body>
 </html>"""
@@ -236,5 +276,6 @@ def submit():
 if __name__ == "__main__":
     print("Running on http://127.0.0.1:5000")
     app.run(debug=True)
+
 
 
